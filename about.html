@@ -1,0 +1,355 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="About La Boulangerie 3D Food, including modelling workflow, technology choices and testing evidence.">
+    <title>About | La Boulangerie 3D Food</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <!-- header (same as gallery page) -->
+      <header class="studio-header">
+        <div class="container-fluid">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <a class="brand-lockup d-inline-flex align-items-center gap-3 text-decoration-none" href="index.html#home">
+        <span>
+        <span class="brand-title d-block fw-bold lh-1">La Boulangerie</span>
+        <span class="brand-subtitle d-block mt-1">3D Food</span>
+        </span>
+        </a>
+
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+        <button class="navbar-toggler ms-auto" data-bs-toggle="collapse" data-bs-target="#aboutNav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aboutNav">
+        <ul class="navbar-nav ms-lg-auto gap-lg-4 align-items-lg-center">
+        <li class="nav-item">
+        <a class="nav-link" href="index.html#gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://github.com/krisepampas/web3d-app-final" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        </ul>
+        </div>
+        </nav>
+        </div>
+        </div>
+      </header>
+
+      <main class="about-main">
+        <!-- intro -->
+        <section class="about-hero">
+        <div class="container-fluid">
+        <h1 class="about-title fw-bold mb-3">La Boulangerie 3D Food</h1>
+        <p class="about-lead mb-0">
+        For this Web 3D application, I created a bakery and food themed interactive gallery using three original Blender models: a cheeseburger, a green apple and a bread basket. The application allows users to switch between models, inspect them in real time, trigger model-specific animations, change lighting, use camera viewpoints, switch wireframe mode and play audio through the web interface.
+        </p>
+        <button id="aboutMusicBtn" class="hero-pill about-music-button mt-4">Play Music</button>
+        </div>
+        </section>
+
+        <section class="about-content">
+        <div class="container-fluid">
+        <div class="about-grid">
+        <!-- 3d model evidence -->
+        <article class="about-section model-evidence-section">
+        <h2>3D models</h2>
+        <div class="model-evidence-copy">
+        <p>
+        The cheeseburger, green apple and bread basket were modelled in Blender and exported as GLB files for the Three.js viewer. The cheeseburger is built from separate bun, cheese and patty objects so that the web application can animate the layers individually. The cheese was shaped with a cloth and collision workflow to make it sit more naturally on the burger.
+        </p>
+        <p>
+        The apple was made from a reshaped sphere with a separate stem. The bread basket is the most detailed model and uses Extra Curve Objects, Knots/Celtic Links curves, NURBS ring shapes and three separate bread objects. The original Blender files are stored in the <code>blender_files</code> folder, and the exported web models are stored in <code>models</code>.
+        </p>
+        <p>
+        Materials were prepared in Blender before export. The burger buns, patty, apple and bread use baked texture images so the procedural material work appears consistently in the browser. The bread basket model was also optimised with Decimate because the original file was too large for smooth web use.
+        </p>
+        </div>
+        <div class="evidence-image-grid">
+        <figure class="evidence-image-card">
+        <button class="evidence-image-button" data-bs-toggle="modal" data-bs-target="#evidenceImageModal" data-image-src="assets/images/apple_material_nodes.png" data-image-alt="Apple procedural material node setup in Blender" data-image-caption="Apple procedural material node setup in Blender.">
+        <img src="assets/images/apple_material_nodes.png" alt="Apple procedural material node setup in Blender">
+        </button>
+        <figcaption>Apple procedural material node setup in Blender.</figcaption>
+        </figure>
+        <figure class="evidence-image-card">
+        <button class="evidence-image-button" data-bs-toggle="modal" data-bs-target="#evidenceImageModal" data-image-src="assets/images/burger_layers_blender.png" data-image-alt="Burger model built as separate layers in Blender" data-image-caption="Burger model built as separate layers for the web animation.">
+        <img src="assets/images/burger_layers_blender.png" alt="Burger model built as separate layers in Blender">
+        </button>
+        <figcaption>Burger model built as separate layers for the web animation.</figcaption>
+        </figure>
+        <figure class="evidence-image-card">
+        <button class="evidence-image-button" data-bs-toggle="modal" data-bs-target="#evidenceImageModal" data-image-src="assets/images/bread_basket_blender.png" data-image-alt="Bread basket model with curve based basket detail in Blender" data-image-caption="Bread basket model with curve-based basket detail.">
+        <img src="assets/images/bread_basket_blender.png" alt="Bread basket model with curve based basket detail in Blender">
+        </button>
+        <figcaption>Bread basket model with curve-based basket detail.</figcaption>
+        </figure>
+        <figure class="evidence-image-card">
+        <button class="evidence-image-button" data-bs-toggle="modal" data-bs-target="#evidenceImageModal" data-image-src="assets/images/apple_uv_bake.png" data-image-alt="Apple UV layout and baked texture preview in Blender" data-image-caption="Apple UV layout and baked texture preview.">
+        <img src="assets/images/apple_uv_bake.png" alt="Apple UV layout and baked texture preview in Blender">
+        </button>
+        <figcaption>Apple UV layout and baked texture preview.</figcaption>
+        </figure>
+        </div>
+        </article>
+
+              <article class="about-section">
+                <h2>Design</h2>
+        <p>
+        The interface uses warm cream, brown and gold colours to match the bakery theme. The header uses a text-based brand and strapline, while the Gallery page uses a left-side model menu and a large central 3D viewer so the selected model remains the focus. The controls are placed directly under the viewer to make wireframe mode, animation, lighting and camera views easy to find.
+        </p>
+        <p>
+        Bootstrap is used for the responsive grid, navigation and layout utilities, while custom CSS gives the application its own visual identity. The design also considers accessibility by using semantic HTML elements such as header, main, aside, section and footer for a clear page structure, plain text labels on every button so the function is obvious without relying on icon literacy, readable responsive layouts that adapt to phone and tablet screens, and user-controlled audio rather than autoplay so users with sensory sensitivities are not surprised by sound.
+        </p>
+        </article>
+
+              <article class="about-section">
+                <h2>Integration</h2>
+        <p>
+        The application integrates HTML5, CSS3, Bootstrap, JavaScript, Three.js, GLTFLoader and OrbitControls. Three.js creates the WebGL scene, camera, renderer, lighting and shadow setup. GLTFLoader imports the Blender-exported GLB files, while OrbitControls allows each model to be inspected interactively.
+        </p>
+        <p>
+        The Gallery page integrates the 3D models with short supporting text descriptions, lighting controls, camera buttons, background music and a short burger sound effect.
+        </p>
+        <p>
+        The burger assembly sound was edited in Clipchamp into a short single pop sound because the original timing did not match the layered animation. In the JavaScript implementation, this short sound is triggered multiple times with timed delays during the burger animation so each layer has a separate pop effect.
+        </p>
+        </article>
+
+              <article class="about-section interaction-section">
+                <h2>Interaction</h2>
+        <p>
+        The Gallery page supports model switching between Cheeseburger, Green Apple and Bread Basket, with OrbitControls used for dragging, rotating and zooming around each loaded GLB model. Users can inspect the model structure with wireframe mode, start or stop automatic rotation, reset the camera, and use Front, Side, Top and Detail viewpoint buttons that move the camera with smooth JavaScript tweening. The interface also includes Warm, Studio and Oven Glow lighting presets, a live light intensity slider, background music controlled by a button, and model-specific animations: the burger layers drop into place, the apple rolls side to side, and the bread basket rotates.
+        </p>
+        </article>
+        </div>
+
+            <!-- implementation + testing -->
+            <article class="about-section about-section-wide">
+        <h2>Implementation</h2>
+        <p>
+        The application was implemented as a responsive two-page Web 3D site. The Gallery page contains the interactive Three.js scene and model controls, while this About page explains the modelling workflow, design choices, technologies, implementation, testing evidence and deeper understanding work. JavaScript handles model loading, button events, active control states, animation timing, audio playback, camera movement and UI text updates.
+        </p>
+        <p>
+        <strong>Rationality of technology choices.</strong> Three.js was chosen as the Web 3D format because it was taught in the labs, has wide browser support, loads Blender's native GLB export directly through GLTFLoader and has more community documentation than X3DOM. GLB was chosen over X3D because it is the modern Blender export format, produces smaller files, and matches the Three.js workflow without conversion steps. Bootstrap is used for the responsive grid and navigation utilities because it is faster than writing custom media queries from scratch, and custom CSS layered on top gives the site its own bakery visual identity rather than a default Bootstrap look. The HTML5 audio element was used for music and sound effects because it is supported natively without an extra library.
+        </p>
+        <p>
+        I conducted functional testing on the Gallery page to check that the model selection buttons, wireframe mode, animation button, lighting presets, camera viewpoint buttons, music button and navigation links worked as expected. I also tested the site on different screen sizes to check that the layout remained readable.
+        </p>
+        <p>
+        I also asked a classmate to test the website and complete a cognitive walkthrough of the main controls. This feedback helped me identify several practical issues in the interactive experience. For example, the apple rolling animation originally clipped through the large scene tray, so I reduced the tray size to give the model more space to move.
+        </p>
+        <p>
+        The bread basket model was also too heavy at first, especially when wireframe mode was enabled in the browser. After feedback that the page became slow and less smooth, I used Blender's Decimate modifier to reduce the model complexity while keeping a balance between visual detail and web performance.
+        </p>
+        <p>
+        Other feedback led to smaller interface and media improvements. Some emoji-style icons on the buttons did not display correctly, so I removed them and kept clear text labels instead. The burger animation sound was originally out of sync, so I edited the audio into a short pop sound and triggered it multiple times during the layered animation. The background music also originally started without a stop option, so I added a button state that allows users to play and pause it. Music support was also added to the About page so the audio experience remains consistent when users move away from the Gallery page.
+        </p>
+        <p>
+        Mobile testing also showed that the Implementation and publication section and the Generative AI Usage Record table did not fit the phone screen correctly. I adjusted the responsive CSS so long text can wrap inside its card and tables fit the available screen width on smaller devices.
+        </p>
+        </article>
+
+            <!-- deeper understanding -->
+            <article class="about-section about-section-wide">
+        <h2>Deeper Understanding</h2>
+        <p>
+        This project goes beyond the base lab tasks by replacing the lab Coca-Cola theme with an original bakery and food concept. I created three original Blender models instead of using the lab assets: a cheeseburger, a green apple and a bread basket. The models use workflows that go further than simple primitive modelling, including cloth and collision shaping for the burger cheese, procedural material node setups, UV baking, curve-based basket construction and NURBS ring details.
+        </p>
+        <p>
+        I also applied optimisation and export decisions for web performance. The bread basket was originally too large and became slow in the browser, especially in wireframe mode, so I used Blender's Decimate modifier to reduce the model complexity while keeping the woven basket detail readable. Baked texture images are used so the visual material work from Blender can display consistently in the Three.js viewer without making the browser recreate the full Blender shader networks.
+        </p>
+        <p>
+        The JavaScript implementation also extends the lab examples. The application loads and switches between multiple GLB files, normalises model scale automatically, provides wireframe inspection, and uses custom lighting presets with a live intensity slider instead of leaving lighting control as a development-only panel. The Gallery also includes Front, Side, Top and Detail viewpoint buttons that move the camera and OrbitControls target smoothly with JavaScript tweening, making model inspection more controlled than a sudden camera jump.
+        </p>
+        <p>
+        The model animations are also specific to the object rather than being a single generic rotation. The burger animation controls named GLB parts individually so each layer drops into place with bounce easing and timed pop sound effects, while the apple rolls side to side and the bread basket rotates to show its woven form. These interactions support the story of each food object and show a deeper understanding of how model structure, JavaScript animation and user interface controls can work together in a Web 3D application.
+        </p>
+        </article>
+
+            <div class="about-grid">
+              <!-- publication info -->
+              <article class="about-section publication-section">
+        <h2>Implementation and publication</h2>
+        <p>
+        The completed project is organised as a Web 3D application folder containing the Gallery page, About page, JavaScript, CSS, audio files, baked texture images, exported GLB models and original Blender files. The site has been tested locally through Visual Studio Code and uploaded to the University of Sussex ITS web server for publication.
+        </p>
+        <p>
+        The GitHub repository link is included in the site navigation so the codebase, exported GLB models and Blender source files can be reviewed. The About page also records the modelling workflow, testing feedback and deeper understanding work required for the assignment.
+        </p>
+        <p>
+        The 3D models are original Blender work created for this project. External libraries and media are credited in the References section below.
+        </p>
+
+        <h2 class="mt-4">Statement of Originality</h2>
+        <p>
+        I confirm that this Web 3D Application is my own work for the assignment. The three Blender models (cheeseburger, green apple and bread basket) were modelled, textured and exported by me, with the original .blend files included in the submission. The website layout, CSS theming, JavaScript interactivity and the written content of this About page are my own work. External libraries, easing equations and royalty-free media used in the project are credited in the References section below. Generative AI assistance is recorded transparently in the Generative AI Usage Record at the end of this page.
+        </p>
+
+        <h2 class="mt-4">References</h2>
+        <ul class="about-list">
+        <li>Three.js library by mrdoob and contributors, MIT licensed (<a class="text-link" href="https://threejs.org/" target="_blank" rel="noopener">threejs.org</a>). Used for WebGL scene, camera and renderer setup.</li>
+        <li>GLTFLoader and OrbitControls from the Three.js examples/jsm add-ons, MIT licensed. Used for loading GLB models and for mouse-driven model inspection.</li>
+        <li>Bootstrap 5 by the Bootstrap team, MIT licensed (<a class="text-link" href="https://getbootstrap.com/" target="_blank" rel="noopener">getbootstrap.com</a>). Used for responsive grid, navigation and layout utilities.</li>
+        <li>easeOutBounce easing function copied from <a class="text-link" href="https://easings.net/#easeOutBounce" target="_blank" rel="noopener">easings.net</a>, originally from Robert Penner's easing equations (public domain). Used for the burger layer drop animation.</li>
+        <li>Background music and burger pop sound effect from <a class="text-link" href="https://pixabay.com/sound-effects/search/cartoon%20pop/" target="_blank" rel="noopener">Pixabay sound effects</a> (Pixabay licence, free for commercial use).</li>
+        </ul>
+        </article>
+
+              <!-- ai usage -->
+              <article class="about-section ai-usage-section">
+        <h2>Generative AI Usage Record</h2>
+        <p>
+        Generative AI was used only as an assistive tool for checking, explanation, design discussion and debugging support. It was not used to generate or create models, develop code from prompts, or automatically create a complete website.
+        </p>
+        <div class="table-responsive">
+        <table class="evidence-table ai-usage-table">
+        <thead>
+        <tr>
+        <th>Use Case</th>
+        <th>Tool</th>
+        <th>Outcome</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>CSS layout and colour palette</td>
+        <td>ChatGPT</td>
+        <td>Discussed bakery-themed colour palette options and overall layout direction with AI, including how a sidebar + main viewer arrangement could work for the gallery. I picked the final colour values, decided the spacing system and responsive breakpoints, and wrote the CSS for the lighting panel, evidence grid and About page sections myself to match the La Boulangerie identity.</td>
+        </tr>
+        <tr>
+        <td>Lighting preset ideas</td>
+        <td>ChatGPT</td>
+        <td>Asked for ideas for food and bakery lighting moods. This helped me decide on Warm, Studio and Oven Glow lighting presets, but the final Three.js light colours, positions and intensity values were adjusted and tested manually.</td>
+        </tr>
+        <tr>
+        <td>Blender export settings guidance</td>
+        <td>ChatGPT</td>
+        <td>Asked for common GLB export considerations, such as applying transforms, including textures and keeping files suitable for web use. I used this as a checklist while exporting my own Blender models.</td>
+        </tr>
+        <tr>
+        <td>Blender material workflow explanation</td>
+        <td>ChatGPT</td>
+        <td>Asked for explanations of procedural material and texture baking workflows in Blender. This helped me describe the apple, burger and bread material process more clearly, while the models and materials were created by me.</td>
+        </tr>
+        <tr>
+        <td>Burger animation timing</td>
+        <td>ChatGPT</td>
+        <td>Discussed how a layered drop animation could be structured (per-layer delays, named GLB parts) and asked for an explanation of why the layer movement and pop sound effect did not feel synchronised. I edited the audio file into a shorter pop, decided the per-layer delay values, and tested the final timing in the browser myself.</td>
+        </tr>
+        <tr>
+        <td>Camera tweening approach</td>
+        <td>ChatGPT</td>
+        <td>Asked AI to explain how smooth camera transitions work in Three.js, including why both the camera position and the OrbitControls target need to be tweened together. I chose the four viewpoint positions, tested the easing duration, and integrated the tweening into the existing button event handlers myself.</td>
+        </tr>
+        <tr>
+        <td>Animation principles and easing</td>
+        <td>ChatGPT</td>
+        <td>Asked AI to explain how JavaScript animation works in general, including the requestAnimationFrame loop, how a time-based progress value (0 to 1) is mapped through an easing function to produce non-linear motion, and why eased motion feels more natural than linear interpolation. I used this explanation to write the small tween helper used for the burger drop, apple roll and camera moves, and I chose all the durations and easings myself based on visual testing.</td>
+        </tr>
+        <tr>
+        <td>Debugging mobile layout overflow</td>
+        <td>ChatGPT</td>
+        <td>Asked why the About page overflowed horizontally on a phone screen, especially the Implementation and publication section and the Generative AI Usage Record table. The explanation helped me identify that long text, table sizing and mobile CSS rules needed adjustment. I then edited the responsive CSS myself.</td>
+        </tr>
+        <tr>
+        <td>Checking responsive table behaviour</td>
+        <td>ChatGPT</td>
+        <td>Asked how HTML tables can be made more usable on small screens without breaking the page layout. I used the advice to review the table wrapper and table CSS, then adjusted the final styling myself.</td>
+        </tr>
+        <tr>
+        <td>Debugging button icon display</td>
+        <td>ChatGPT</td>
+        <td>Asked why some emoji-style button icons did not display consistently across browsers and devices. I decided to remove the unreliable icons and keep clear text labels on the buttons, improving readability and accessibility.</td>
+        </tr>
+        <tr>
+        <td>Finding suitable sound resources</td>
+        <td>ChatGPT</td>
+        <td>Asked where royalty-free sound effects for web projects could be found. This helped me identify Pixabay as a suitable source for background music and the short burger pop sound effect.</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </article>
+        </div>
+
+        <div class="about-actions">
+        <a class="control-button about-action-link" href="index.html#gallery">Back to 3D gallery</a>
+        </div>
+        </div>
+        </section>
+      </main>
+
+      <footer class="studio-footer">
+        <div class="container-fluid d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+        <span>Web 3D Applications</span>
+        <span>La Boulangerie 3D Food</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- modal for the bigger version of the blender screenshots -->
+    <div class="modal fade" id="evidenceImageModal" tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content evidence-modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title h5" id="evidenceImageModalLabel">3D model evidence</h2>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+        <img id="evidenceModalImage" class="evidence-modal-image" src="" alt="">
+        <p id="evidenceModalCaption" class="evidence-modal-caption mb-0"></p>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- small bit of js for the about page music button + the screenshot modal -->
+    <audio id="aboutMusicAudio" src="assets/audio/cafe-music.mp3" preload="auto" loop></audio>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+      var aboutMusicBtn = document.getElementById('aboutMusicBtn');
+      var aboutMusicAudio = document.getElementById('aboutMusicAudio');
+      var evidenceModalImage = document.getElementById('evidenceModalImage');
+      var evidenceModalCaption = document.getElementById('evidenceModalCaption');
+      var evidenceImageModalLabel = document.getElementById('evidenceImageModalLabel');
+      var aboutMusicPlaying = false;
+
+      aboutMusicAudio.volume = 0.45;
+
+      aboutMusicBtn.onclick = function() {
+        if (aboutMusicPlaying) {
+          aboutMusicAudio.pause();
+          aboutMusicPlaying = false;
+          aboutMusicBtn.textContent = 'Play Music';
+          aboutMusicBtn.classList.remove('active');
+        } else {
+          aboutMusicAudio.play();
+          aboutMusicPlaying = true;
+          aboutMusicBtn.textContent = 'Pause Music';
+          aboutMusicBtn.classList.add('active');
+        }
+      };
+
+      // when an evidence thumbnail is clicked, copy its data-* attrs into the modal
+      var evidenceButtons = document.querySelectorAll('.evidence-image-button');
+      for (var i = 0; i < evidenceButtons.length; i++) {
+        evidenceButtons[i].onclick = function() {
+          evidenceModalImage.src = this.getAttribute('data-image-src');
+          evidenceModalImage.alt = this.getAttribute('data-image-alt');
+          evidenceModalCaption.textContent = this.getAttribute('data-image-caption');
+          evidenceImageModalLabel.textContent = this.getAttribute('data-image-caption');
+        };
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Submission - La Boulangerie 3D Food</title>
+</head>
+<body>
+
+<h1>Submission - La Boulangerie 3D Food</h1>
+
+<p>Required evidence for the Web 3D Application coursework.</p>
+
+<h2>1. Packaged and launched through Visual Studio Code</h2>
+<p>The project was developed and locally tested in Visual Studio Code with the Live Server extension.</p>
+
+<h2>2. 3D App ITS Web Server URL</h2>
+<p><a href="[INSERT ITS WEB SERVER URL HERE]">[INSERT ITS WEB SERVER URL HERE]</a></p>
+
+<h2>3. GitHub 3D App Codebase URL</h2>
+<p><a href="https://github.com/krisepampas/web3d-app-final">https://github.com/krisepampas/web3d-app-final</a></p>
+
+<h2>4. GitHub 3D Models URL</h2>
+<p>Exported GLB models and original Blender files are stored in the same repository (the assignment permits Three.js/GLB as an alternative to X3DOM).</p>
+<p>Models: <a href="https://github.com/krisepampas/web3d-app-final/tree/main/models">https://github.com/krisepampas/web3d-app-final/tree/main/models</a></p>
+<p>Blender source files: <a href="https://github.com/krisepampas/web3d-app-final/tree/main/blender_files">https://github.com/krisepampas/web3d-app-final/tree/main/blender_files</a></p>
+
+<h2>5. 3D App Deeper Understanding Statement with Feedback from Testing</h2>
+
+<h3>Deeper Understanding</h3>
+<p>This project goes beyond the base lab tasks in several areas:</p>
+<ul>
+  <li><strong>Original concept and models.</strong> The lab Coca-Cola theme was replaced with an original bakery and food concept. Three original Blender models were created from scratch: a cheeseburger, a green apple and a bread basket. None of the lab assets were reused.</li>
+  <li><strong>Advanced Blender workflows.</strong> The cheeseburger cheese layer was shaped using a cloth and collision simulation rather than manual modelling. The apple uses a procedural material node setup with UV baking so the material appears consistently in the browser. The bread basket was built using Extra Curve Objects, Knots/Celtic Links curves and NURBS ring shapes to produce the woven detail. Baked texture images are used across all models so the Blender shader work transfers correctly to the Three.js viewer without recreating shader networks in the browser.</li>
+  <li><strong>Web performance optimisation.</strong> The bread basket was decimated using Blender's Decimate modifier to reduce polygon count while keeping the woven detail readable, because the original file caused noticeable slowdown in the browser, particularly when wireframe mode was enabled.</li>
+  <li><strong>Custom JavaScript animation system.</strong> A lightweight tween helper was written from scratch using <code>requestAnimationFrame</code> timing and time-based progress values mapped through easing functions, rather than using a third-party animation library. This was used for the burger layer drop animation, the apple roll animation and all camera transitions.</li>
+  <li><strong>Model-specific animations.</strong> The burger animation targets named GLB parts individually, dropping each layer into place with bounce easing and timed pop sound effects. The apple rolls side to side to reflect how an apple moves on a surface. The bread basket rotates to show its woven form from all sides. These interactions are tied to the story of each food object rather than being a single repeated behaviour.</li>
+  <li><strong>Smooth camera transitions.</strong> Four named camera viewpoints (Front, Side, Top, Detail) move the camera and OrbitControls target together using tweened interpolation, so the transition feels controlled rather than snapping suddenly to a new position.</li>
+  <li><strong>GitHub codebase.</strong> The full codebase, exported GLB models and original Blender source files are published to a GitHub repository as required for the additional going-beyond marks.</li>
+</ul>
+
+<h3>Feedback from Testing</h3>
+<p>Functional testing was carried out on the Gallery page to check that model selection, wireframe mode, animations, lighting presets, camera viewpoints, music and navigation all worked as expected across different screen sizes.</p>
+<p>A classmate also completed a cognitive walkthrough of the main controls, which identified several issues that were then fixed:</p>
+<ul>
+  <li><strong>Apple animation clipping.</strong> The apple rolling animation originally moved into the scene display tray. The tray size was reduced to give the model room to roll without clipping.</li>
+  <li><strong>Bread basket performance.</strong> The wireframe view of the bread basket was slow and less smooth due to the high polygon count. The Decimate modifier was applied in Blender to reduce complexity while keeping the woven shape readable.</li>
+  <li><strong>Button icon inconsistency.</strong> Emoji-style icons on control buttons did not display correctly across all browsers and devices. The icons were removed and clear text labels were kept instead, which also improved accessibility.</li>
+  <li><strong>Burger animation sound sync.</strong> The pop sound effect was out of sync with the layered burger drop animation. The audio file was edited in Clipchamp into a short single pop, which is then triggered individually for each layer with a timed delay.</li>
+  <li><strong>Background music controls.</strong> The background music originally had no way to stop it once started. A play/pause toggle was added so users remain in control of the audio at all times.</li>
+  <li><strong>Mobile layout overflow.</strong> The Implementation section and Generative AI Usage Record table overflowed horizontally on small screens. Responsive CSS was adjusted so long text wraps correctly and tables fit within the available screen width on mobile devices.</li>
+</ul>
+
+</body>
+</html>

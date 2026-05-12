@@ -1,31 +1,181 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="La Boulangerie 3D Food - an interactive bakery-themed Web 3D application.">
+    <title>La Boulangerie 3D Food</title>
 
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="css/bootstrap.css">
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-<script src="https://kit.fontawesome.com/6ac3910c4e.js" crossorigin="anonymous"></script>
-<script src="js/bootstrap.js"></script>
-
-<title>3D Web Page</title>
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
 
   <body>
-    hello world
+    <div class="page-shell">
+      <!-- header -->
+      <header id="home" class="studio-header">
+        <div class="container-fluid">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <a class="brand-lockup d-inline-flex align-items-center gap-3 text-decoration-none" href="#home">
+        <span>
+        <span class="brand-title d-block fw-bold lh-1">La Boulangerie</span>
+        <span class="brand-subtitle d-block mt-1">3D Food</span>
+        </span>
+        </a>
 
- 
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+        <button class="navbar-toggler ms-auto" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-lg-auto gap-lg-4 align-items-lg-center">
+        <li class="nav-item">
+        <a class="nav-link active" href="#gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://github.com/krisepampas/web3d-app-final" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        </ul>
+        </div>
+        </nav>
+        </div>
+        </div>
+      </header>
+
+      <!-- gallery -->
+      <main id="gallery" class="studio-main">
+        <div class="row g-0">
+          <aside class="col-12 col-lg-3 studio-sidebar">
+        <div class="p-4 p-lg-5">
+        <p class="eyebrow mb-3">Menu</p>
+        <!-- model menu -->
+        <div class="model-button-group d-grid gap-3">
+        <button class="model-select active" data-model-index="0">
+        <span>
+        <span class="d-block fw-bold">Cheeseburger</span>
+        <span class="model-subtitle">Classic</span>
+        </span>
+        </button>
+        <button class="model-select" data-model-index="1">
+        <span>
+        <span class="d-block fw-bold">Green Apple</span>
+        <span class="model-subtitle">Fresh</span>
+        </span>
+        </button>
+        <button class="model-select" data-model-index="2">
+        <span>
+        <span class="d-block fw-bold">Bread Basket</span>
+        <span class="model-subtitle">Daily</span>
+        </span>
+        </button>
+        </div>
+        </div>
+        </aside>
+
+          <section class="col-12 col-lg-9 studio-content">
+            <div class="p-4 p-lg-5">
+        <div class="d-flex flex-column flex-xl-row justify-content-between gap-3 mb-4">
+        <div>
+        <p class="eyebrow mb-2">Interactive Showcase</p>
+        <h1 class="display-5 fw-bold mb-0">Fresh food, inspected in 3D.</h1>
+        </div>
+        <div class="hero-actions d-flex flex-wrap gap-3 align-self-start">
+        <button id="bgmBtn" class="hero-pill">
+        Play Music
+        </button>
+        </div>
+        </div>
+
+              <!-- 3d viewer -->
+              <div class="viewer-card mb-4">
+        <div id="canvas-container" class="canvas-container"></div>
+        </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-12">
+                  <!-- controls -->
+                  <div class="control-strip d-flex flex-wrap gap-3">
+        <button id="wireframeBtn" class="control-button">
+        Wireframe
+        </button>
+        <button id="rotateBtn" class="control-button">
+        Rotate
+        </button>
+        <button id="animateBtn" class="control-button">
+        Animate
+        </button>
+        <button id="lightBtn" class="control-button">
+        Light Off
+        </button>
+        <button id="resetCameraBtn" class="control-button">
+        Reset Camera
+        </button>
+        <button class="control-button camera-view-button" data-camera-view="front">Front</button>
+        <button class="control-button camera-view-button" data-camera-view="side">Side</button>
+        <button class="control-button camera-view-button" data-camera-view="top">Top</button>
+        <button class="control-button camera-view-button" data-camera-view="detail">Detail</button>
+        </div>
+        </div>
+
+                <div class="col-12">
+                  <!-- light presets -->
+                  <div class="lighting-panel">
+        <div class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-between gap-3">
+        <div>
+        <p class="eyebrow mb-1">Lighting Presets</p>
+        <div class="btn-group preset-group">
+        <button class="light-preset active" data-light-preset="warm">Warm</button>
+        <button class="light-preset" data-light-preset="studio">Studio</button>
+        <button class="light-preset" data-light-preset="oven-glow">Oven Glow</button>
+        </div>
+        </div>
+        <div class="intensity-control">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+        <label class="eyebrow mb-0" for="lightIntensityRange">Light Intensity</label>
+        <span id="lightIntensityValue" class="intensity-value">1.00x</span>
+        </div>
+        <input id="lightIntensityRange" class="form-range" type="range" min="0.35" max="1.75" step="0.05" value="1">
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+              <!-- model info -->
+              <section class="info-card mb-4">
+        <p class="eyebrow mb-2">Current Model</p>
+        <h2 id="modelName" class="h2 fw-bold mb-2">Cheeseburger</h2>
+        <p id="modelDescription" class="mb-0">A five-part cheeseburger made from separate bun, cheese and patty objects for the La Boulangerie 3D food gallery. Use Animate to drop the layers into place with a short sound effect, or use Wireframe and camera views to inspect the separate parts. The cheese shape was prepared with a Blender cloth and collision workflow, and the food colours were baked for smooth Three.js display.</p>
+        </section>
+        </div>
+        </section>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <footer class="studio-footer">
+        <div class="container-fluid d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+        <span>Web 3D Applications</span>
+        <span>La Boulangerie 3D Food</span>
+        </div>
+      </footer>
+    </div>
+
+    <audio id="bgmAudio" src="assets/audio/cafe-music.mp3" preload="auto" loop></audio>
+    <audio id="burgerLayerSfx" src="assets/audio/carton_pop.m4a" preload="auto"></audio>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/script.js"></script>
   </body>
 </html>

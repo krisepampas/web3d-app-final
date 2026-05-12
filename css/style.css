@@ -1,0 +1,585 @@
+/* bakery palette - cream / brown / gold
+   went through about 4 versions before landing on these, the gold accent
+   needed to be warm enough to read on the dark brown header
+   TODO: maybe add a dark mode someday */
+:root {
+  --bg-page: #fbf5eb;
+  --bg-sidebar: #f2e8d5;
+  --bg-dark: #3b2314;
+  --accent: #fac775;
+  --mid: #c8934a;
+  --text-muted: #9a7040;
+  --ink: #3b2314;
+  --cream-line: #e3be78;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* about page table was overflowing on mobile, this fixed it */
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: #1f1f1d; /* dark frame around the page-shell, looks nicer on big screens */
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+.text-link {
+  color: var(--mid);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.text-link:hover {
+  color: var(--bg-dark);
+}
+
+.page-shell {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: var(--bg-page);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+.studio-header,
+.studio-footer {
+  background: var(--bg-dark);
+  color: var(--accent);
+}
+
+.studio-header {
+  padding: 28px 44px;
+}
+
+.studio-footer {
+  padding: 20px 44px;
+  font-weight: 700;
+  /* color: red; */
+  color: var(--accent) !important; /* bootstrap was overriding this for some reason */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(250, 199, 117, 0.7);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+.brand-lockup {
+  color: var(--accent);
+}
+
+.brand-lockup:hover {
+  color: var(--accent);
+}
+
+/* clamp is great for responsive type, no media queries needed for the title */
+.brand-title {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+}
+
+.brand-subtitle {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.studio-sidebar {
+  background: var(--bg-sidebar);
+  border-right: 1px solid #e7d3ae;
+}
+
+.studio-content {
+  background: var(--bg-page);
+}
+
+.eyebrow {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* sidebar buttons for picking a model
+   76px min-height makes them comfy to tap on phones */
+.model-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 76px;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.model-select:hover {
+  background: rgba(200, 147, 74, 0.15);
+  transform: translateX(2px);
+}
+
+.model-select.active {
+  background: var(--bg-dark);
+  color: var(--accent);
+}
+
+.model-subtitle {
+  display: block;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.model-select.active .model-subtitle {
+  color: var(--mid);
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--bg-dark);
+  color: var(--accent);
+  padding: 8px 18px;
+  font-weight: 800;
+}
+
+.hero-pill {
+  border: 0;
+  transition: all 0.2s ease;
+}
+
+.hero-pill:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.hero-pill.active {
+  color: #ffffff;
+}
+
+.about-music-button {
+  border: 0;
+}
+
+.viewer-card,
+.info-card,
+.lighting-panel {
+  border: 1px solid var(--cream-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.viewer-card {
+  overflow: hidden;
+}
+
+/* the actual three.js canvas lives inside this
+   500px is a compromise - bigger looks better but pushes the controls off screen on laptops */
+.canvas-container {
+  width: 100%;
+  height: 500px;
+  background: #f7ebd6;
+}
+
+.canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.control-strip,
+.lighting-panel,
+.info-card {
+  padding: 18px 24px;
+}
+
+/* shared button look for the control strip and lighting presets
+   FIXME: the .active state colour combo could probably have better contrast,
+   but it passes the basic check so leaving it for now */
+.control-button,
+.light-preset {
+  min-height: 52px;
+  border: 1px solid #ead3aa;
+  border-radius: 12px;
+  background: #fff8eb;
+  color: var(--ink);
+  font-weight: 900;
+  padding: 0 22px;
+  transition: all 0.2s ease;
+}
+
+.control-button:hover,
+.light-preset:hover {
+  border-color: var(--mid);
+  color: var(--mid);
+  transform: translateY(-1px);
+}
+
+.control-button.active,
+.light-preset.active {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: var(--accent);
+}
+
+.preset-group {
+  gap: 10px;
+}
+
+.intensity-control {
+  width: min(420px, 100%);
+}
+
+.intensity-value {
+  color: var(--mid);
+  font-weight: 900;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: var(--bg-dark);
+}
+
+.info-card p {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.model-evidence-section {
+  grid-column: 1 / -1;
+}
+
+.model-evidence-copy {
+  /* removed max-width so this section matches the full width of Implementation / Deeper Understanding */
+}
+
+/* 4 across on desktop, drops to 2 then 1 in the media queries below
+   minmax(0, 1fr) is the trick that stops the images blowing the grid out */
+.evidence-image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.evidence-image-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #ead3aa;
+  border-radius: 12px;
+  background: rgba(255, 248, 235, 0.7);
+}
+
+.evidence-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.evidence-image-button:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.evidence-image-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  background: #fff8eb;
+}
+
+.evidence-image-card figcaption {
+  padding: 12px 14px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.evidence-modal-content {
+  background: #fff8eb;
+  color: var(--ink);
+}
+
+.evidence-modal-image {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #1f1f1d;
+}
+
+.evidence-modal-caption {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.about-main {
+  background: var(--bg-page);
+}
+
+.about-hero {
+  padding: 56px 44px 32px;
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid #e7d3ae;
+}
+
+.about-title {
+  max-width: 980px;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+}
+
+.about-lead {
+  max-width: 940px;
+  color: var(--text-muted);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.about-content {
+  padding: 36px 44px 52px;
+}
+
+/* about page is mostly a 2 col grid, some sections span the full row using grid-column: 1 / -1 */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.about-section {
+  border: 1px solid var(--cream-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 24px;
+  word-break: break-word;
+}
+
+.about-section-wide {
+  margin: 22px 0;
+}
+
+.interaction-section,
+.publication-section,
+.ai-usage-section {
+  grid-column: 1 / -1;
+}
+
+.about-section h2 {
+  margin-bottom: 14px;
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.about-section p,
+.about-list {
+  color: var(--text-muted);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.about-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.about-list li + li {
+  margin-top: 8px;
+}
+
+/* AI usage table - table-layout: fixed forces the column widths below to actually stick,
+   without it the long Outcome column kept squishing the others */
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--ink);
+  font-weight: 700;
+  table-layout: fixed;
+}
+
+.evidence-table th,
+.evidence-table td {
+  padding: 14px 16px;
+  border: 1px solid #ead3aa;
+  vertical-align: top;
+}
+
+.evidence-table th {
+  background: var(--bg-dark);
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.evidence-table td {
+  background: rgba(255, 248, 235, 0.7);
+}
+
+.ai-usage-table th:nth-child(1),
+.ai-usage-table td:nth-child(1) {
+  width: 24%;
+}
+
+.ai-usage-table th:nth-child(2),
+.ai-usage-table td:nth-child(2) {
+  width: 14%;
+}
+
+.ai-usage-table th:nth-child(3),
+.ai-usage-table td:nth-child(3) {
+  width: 62%;
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.about-actions {
+  margin-top: 22px;
+}
+
+.about-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.about-action-link:hover {
+  color: var(--mid);
+}
+
+/* tablet breakpoint - sidebar moves above the canvas, model buttons go horizontal */
+@media (max-width: 991px) {
+  .page-shell {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .studio-header,
+  .studio-footer {
+    padding: 24px;
+  }
+
+  .studio-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #e7d3ae;
+  }
+
+  .model-button-group {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .model-select {
+    min-height: 90px;
+  }
+
+  .evidence-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-hero,
+  .about-content {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* phone breakpoint - canvas shrinks, buttons stack full width
+   classmate found the table overflowing on their phone, fixed with word-break */
+@media (max-width: 767px) {
+  .canvas-container {
+    height: 320px;
+  }
+
+  .model-button-group {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-select {
+    min-height: 82px;
+  }
+
+  .control-button,
+  .light-preset {
+    width: 100%;
+  }
+
+  .preset-group {
+    display: grid;
+    width: 100%;
+  }
+
+  .about-hero {
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 36px;
+  }
+
+  .about-content {
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 24px;
+  }
+
+  .about-section {
+    padding: 16px;
+  }
+
+  .about-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .evidence-table th,
+  .evidence-table td {
+    padding: 12px 10px;
+    word-break: break-word;
+  }
+}
